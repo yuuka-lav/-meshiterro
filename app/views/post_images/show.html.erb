@@ -59,7 +59,8 @@
                       <div class="comment-body bb">
                           <div class="comment-avatar">
                               <div class="avatar">
-                                <%= attachment_image_tag post_comment.user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg" %>
+                                <%= image_tag('sample-author1.jpg', style: "width: 60px; height: 60px;")%>
+                                <%#= attachment_image_tag post_comment.user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg" %>
                               </div>
                           </div>
                           <div class="comment-text">
@@ -70,6 +71,11 @@
                                   </span>
                               </div>
                               <div class="comment-entry"><%= post_comment.comment %></div>
+                              <% if post_comment.user == current_user %>
+                              <div>
+                                <%= link_to "削除", post_image_post_comment_path(post_comment.post_image, post_comment), method: :delete, class: "btn btn-danger pull-right"%>
+                              </div>
+                              <% end %>
                           </div>
                       </div>
                   </li>
